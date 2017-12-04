@@ -64,7 +64,7 @@ EXAMPLE:
 STRING!
 
 
-convert
+converting
 - (char->integer x)
 - (integer->char x)
 - (string->list x)
