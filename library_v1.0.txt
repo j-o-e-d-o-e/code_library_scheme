@@ -1,0 +1,267 @@
+%apply
+- applies a function to all elements of a list
+
+EXAMPLES:
+> (define ls '(1 2 3))
+> (apply + ls)
+6
+
+> (apply + 1 2 3 ls)
+12
+
+
+%association
+- each element of this list is a cons cell
+- car is the key, cdr is the value associated to the key
+
+EXAMPLE:
+> (define a '((a . 1) (b . 2) (c . 3)))
+> a
+((a . 1) (b . 2) (c . 3))
+> (assv 'a a)
+(a . 1)
+
+
+%begin
+- defines a block containing several calls
+- eg. used in 'if'-statements
+- lambda-bodies are implicit 'begins'; therefore, no 'begin' is required
+
+EXAMPLE:
+> (define ls '(#\1 #\2 #\3))
+> (if (not(null? ls))
+      (begin
+      (display "The first element is ")
+      (display (car ls))
+      (display "."))
+      (values))
+The first element is 1.
+
+
+%chars
+- represented by prefixing the character with '#\'
+- white space chars: #\newline, #\return, #\space
+- (char? x) checks if x is a character
+
+EXAMPLE:
+> (define x #\j)
+> (char? x)
+#t
+
+
+%cond
+- allows for multiple branches
+- 'cond's & 'else' are on same level (unlike 'if')
+- cond branches are implicit 'begins' (unlike 'if')
+
+EXAMPLE:
+> (define x "w")
+> (cond((string? x)
+        (display "STRING!"))
+       ((integer? x)
+        (display "INTEGER!"))
+       (else (display "CHAR!")))
+STRING!
+
+
+%convert
+- (char->integer x)
+- (integer->char x)
+- (string->list x)
+- (number->string x)
+- (string->number x)
+
+
+%eqv?
+- compares numbers, chars, strings & symbols for value-equality
+- as for numbers, (= x y) is more appropriate
+
+EXAMPLES:
+> (eqv? 1 1)
+#t
+> (eqv? #\a #\a)
+#t
+> (eqv? "w" "w")
+#t
+> (eqv? 'w 'w)
+#t
+> (eqv? '() '())
+#t
+
+
+%higher order functions
+- take other functions as parameters and therefore promote modularity of programs
+
+EXAMPLE:
+(define (member func elem ls)
+  (let loop((ls ls)(index 0))
+  (cond
+   ((null? ls) #f)
+   ((func elem (car ls)) index)
+   (else (loop (cdr ls) (+ index 1))))))
+> (member eqv? "hello" '(1 2 3 "hello" 4))
+3
+
+
+%input/output
+- (read-char port) reads the next character from 'port'
+- (read-line port) reads the next line returning it as a string
+- (read port) reads the next expression
+
+- (write-char port) writes the given character (without \#) to the port
+- (write port) writes the next expression in machine-readable format (eg. including #\)
+- (display) write the next expression in human-friendly format
+- (newline) starts a new line on the current output port
+
+- if no port is given, the current port (usually the console) is assumed
+
+- (open-input-file file) takes 'file'-path & returns an input port
+- (open-output-file file) takes 'file'-path & returns an output port 
+- (close-input-port port) & (close-output-port port) close port
+
+
+%if
+- consists of one 'if' & 'else'
+- nested 'if'-expressions are possible instead of 'else'-branch
+- if 'else' is not needed, it can be replaced by '(values)'
+
+EXAMPLE:
+> (define ls '(#\1 #\2 #\3))
+> (if (not(null? ls))
+    (if (char-numeric? (car ls))
+       (display "NUMBER!")
+       (display "NO NUMBER!"))
+    (values))
+NUMBER!
+
+
+%lambda
+- defines an anonymous function without a name
+- also used to define functions (instead of the shortcut)
+
+EXAMPLE:
+> ((lambda (x) (+ x 2)) 5)
+7
+> (define add2 (lambda (x) (+ x 2)))
+> (add2 5)
+7
+
+
+%let/let*
+- introduces one or more local variables
+- these are only valid within the parenthesis after 'let'
+- let* allows variables to be initialized to values of earlier initialized variables (unlike let)
+
+EXAMPLES:
+> (let ((x 1)(y 2)(z 3)) (list x y z))
+(1 2 3)
+
+> (let* ((x 1)(y x))(+ x y))
+2
+
+
+%lists
+- (cons x y) constructs a tuple containing x & y
+- (list x y z) constructs a list containing x, y & z
+- (car ls) returns the first element of ls
+- (cdr ls) returns the tail of ls
+- (cadr ls), (caddr ls) & (cadddr ls) return the second, third or fourth elemnt of ls respectively
+- 'car' means 'Contents of the Address part of the Register'
+- 'cdr' means 'Contents of the Decrement part of the Register'
+- (set-car! ls y) replaces the head of ls by y
+- (set-cdr! ls y) replaces the tail of ls by y
+- (list-ref ls x) returns the list elment at index x
+- (list-tail ls x) returns the tail of a list starting from the index x
+- (list? ls) checks if ls is a list
+- (null? ls) checks if ls is '()
+- (equal? ls1 ls2) checks if ls1 & ls2 are equal
+- lists need to be quoted in order to evaluate them (eg. '(1 2 3))
+
+EXAMPLES:
+> (define ls (list 1 2 3))
+> (set-car! ls #\w)
+> ls
+(#\w 2 3)
+> (set-cdr! ls #\z)
+> ls
+(#\w . #\z)
+
+> (define ls (list 1 2 3))
+> (list-ref ls 0)
+1
+> (list-tail ls 1)
+(2 3)
+> (equal? '(1 2 3) '(1 2 3))
+#t
+
+
+%map
+- applies a function to each element of a list & returns the list
+
+EXAMPLES:
+> (map cons '(1 2 3) '(10 20 30))
+((1 . 10) (2 . 20) (3 . 30))
+> (map (lambda (x) (* x x)) '(1 2 3))
+(1 4 9)
+
+
+%named let
+- used for loops
+- initializes local variables which can be used during looping
+
+EXAMPLE:
+> (define ls '("a" 2 "s"))
+> (define (read-ls)
+  (let loop((x ls)) 
+  (if (not(null? x))
+      (begin
+        (display (car x))
+        (loop (cdr x))))))
+> (read-ls)
+a2s
+
+
+%set!/set-car!/set-cdr!
+- changes the value held by a global variable
+
+EXAMPLES:
+> (define x 1)
+> x
+1
+> (set! x 3)
+> x
+3
+
+> (define ls '(1 2 3))
+> (set-car! ls 4)
+> ls
+(4 2 3)
+> (set-cdr! ls 5)
+> ls
+(4 . 5)
+
+
+%strings
+- (string-ref str x) returns the character at the index x from the string str
+- (string-append x y) returns a new string by appending x & y
+- (string? x) checks if x is a string
+-
+
+EXAMPLES:
+> (define str "hello")
+> (string-ref str 1)
+#\e
+> (string-append "adam " "and " "eve")
+"adam and eve"
+
+
+%vectors
+- set of data indexed by integers
+- (vector-ref v index) returns the element of a vector at 'index'
+
+EXAMPLE:
+> (define v '#(1 "b" #\c))
+> v
+#(1 "b" #\c)
+> (vector-ref v 2)
+#\c

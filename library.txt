@@ -1,4 +1,4 @@
-%apply
+apply
 - applies a function to all elements of a list
 
 EXAMPLES:
@@ -10,7 +10,7 @@ EXAMPLES:
 12
 
 
-%association
+association
 - each element of this list is a cons cell
 - car is the key, cdr is the value associated to the key
 
@@ -22,10 +22,10 @@ EXAMPLE:
 (a . 1)
 
 
-%begin
+begin
 - defines a block containing several calls
-- for instance, used in 'if'-statements
-- lambda-bodies are implicit 'begins'; therefore, no 'begin' is neeeded
+- eg. used in 'if'-statements
+- lambda-bodies are implicit 'begins'; therefore, no 'begin' is required
 
 EXAMPLE:
 > (define ls '(#\1 #\2 #\3))
@@ -38,7 +38,7 @@ EXAMPLE:
 The first element is 1.
 
 
-%chars
+chars
 - represented by prefixing the character with '#\'
 - white space chars: #\newline, #\return, #\space
 - (char? x) checks if x is a character
@@ -49,7 +49,7 @@ EXAMPLE:
 #t
 
 
-%cond
+cond
 - allows for multiple branches
 - 'cond's & 'else' are on same level (unlike 'if')
 - cond branches are implicit 'begins' (unlike 'if')
@@ -64,7 +64,7 @@ EXAMPLE:
 STRING!
 
 
-%convert
+convert
 - (char->integer x)
 - (integer->char x)
 - (string->list x)
@@ -72,7 +72,7 @@ STRING!
 - (string->number x)
 
 
-%eqv?
+eqv?
 - compares numbers, chars, strings & symbols for value-equality
 - as for numbers, (= x y) is more appropriate
 
@@ -89,7 +89,7 @@ EXAMPLES:
 #t
 
 
-%higher order functions
+higher order functions
 - take other functions as parameters and therefore promote modularity of programs
 
 EXAMPLE:
@@ -103,7 +103,7 @@ EXAMPLE:
 3
 
 
-%input/output
+input/output
 - (read-char port) reads the next character from 'port'
 - (read-line port) reads the next line returning it as a string
 - (read port) reads the next expression
@@ -120,7 +120,7 @@ EXAMPLE:
 - (close-input-port port) & (close-output-port port) close port
 
 
-%if
+if
 - consists of one 'if' & 'else'
 - nested 'if'-expressions are possible instead of 'else'-branch
 - if 'else' is not needed, it can be replaced by '(values)'
@@ -135,7 +135,7 @@ EXAMPLE:
 NUMBER!
 
 
-%lambda
+lambda
 - defines an anonymous function without a name
 - also used to define functions (instead of the shortcut)
 
@@ -147,7 +147,7 @@ EXAMPLE:
 7
 
 
-%let/let*
+let/let*
 - introduces one or more local variables
 - these are only valid within the parenthesis after 'let'
 - let* allows variables to be initialized to values of earlier initialized variables (unlike let)
@@ -160,7 +160,7 @@ EXAMPLES:
 2
 
 
-%lists
+lists
 - (cons x y) constructs a tuple containing x & y
 - (list x y z) constructs a list containing x, y & z
 - (car ls) returns the first element of ls
@@ -175,7 +175,7 @@ EXAMPLES:
 - (list? ls) checks if ls is a list
 - (null? ls) checks if ls is '()
 - (equal? ls1 ls2) checks if ls1 & ls2 are equal
-- lists need to be quoted in order to evaluate them
+- lists need to be quoted in order to evaluate them (eg. '(1 2 3))
 
 EXAMPLES:
 > (define ls (list 1 2 3))
@@ -195,8 +195,8 @@ EXAMPLES:
 #t
 
 
-%map
--applies a function to each element of a list & returns the list
+map
+- applies a function to each element of a list & returns the list
 
 EXAMPLES:
 > (map cons '(1 2 3) '(10 20 30))
@@ -205,7 +205,7 @@ EXAMPLES:
 (1 4 9)
 
 
-%named let
+named let
 - used for loops
 - initializes local variables which can be used during looping
 
@@ -221,7 +221,7 @@ EXAMPLE:
 a2s
 
 
-%set!/set-car!/set-cdr!
+set!/set-car!/set-cdr!
 - changes the value held by a global variable
 
 EXAMPLES:
@@ -241,7 +241,7 @@ EXAMPLES:
 (4 . 5)
 
 
-%strings
+strings
 - (string-ref str x) returns the character at the index x from the string str
 - (string-append x y) returns a new string by appending x & y
 - (string? x) checks if x is a string
@@ -255,7 +255,7 @@ EXAMPLES:
 "adam and eve"
 
 
-%vectors
+vectors
 - set of data indexed by integers
 - (vector-ref v index) returns the element of a vector at 'index'
 
