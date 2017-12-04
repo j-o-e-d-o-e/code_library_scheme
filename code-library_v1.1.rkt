@@ -1,5 +1,5 @@
 ;"C:\Program Files\Racket\raco" exe --gui C:\Users\joe\Desktop\programming\scheme\code_library\code-library_v1.1.rkt
-#lang racket
+;#lang racket
 
 (define file "library.txt")
 (define num 0)
@@ -71,8 +71,7 @@
           (toc)
           (main))
        (else
-          (newline)
-          (display "What would you like to read? ")
+          (display "\nWhat would you like to read? ")
           (check-input(read))
           (main))))
 
