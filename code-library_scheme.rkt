@@ -1,4 +1,3 @@
-;"C:\Program Files\Racket\raco" exe --gui C:\Users\joe\Desktop\programming\scheme\code_library\code-library_scheme.rkt
 ;#lang racket
 
 (define file "library.txt")
