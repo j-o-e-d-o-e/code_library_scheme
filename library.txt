@@ -245,7 +245,6 @@ strings
 - (string-ref str x) returns the character at the index x from the string str
 - (string-append x y) returns a new string by appending x & y
 - (string? x) checks if x is a string
--
 
 EXAMPLES:
 > (define str "hello")
