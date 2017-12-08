@@ -7,25 +7,18 @@
 (define lib '())
 
 ;aux-function to increment global "num"
-(define (incr)
-  (set! num (+ num 1)) num)
+(define (incr) (set! num (+ num 1)) num)
 
-;aux-function to check if "end-of-entry" has been reached
-(define (end-of-entry? ls)
-  (if (equal? ls end-of-entry) #t
-      #f))
-
-;creates the association "lib" from the .txt-file "file"
+;creates the association "lib" from the .txt-file "file" using the accumulator "acc"
 (define (create-lib)
   (let ((port (open-input-file file)))
-    (let loop((ls '()) (char (read-char port)))
+    (let loop((char (read-char port)) (entry '()) (acc '()))
       (cond ((eof-object? char)
 	    (close-input-port port)
-            (set! lib (append lib (list (cons (incr) (reverse ls))))))
-            ((and (>= (length ls) eoe-length) (end-of-entry? (list-tail (reverse ls) (- (length ls) eoe-length))))
-             (set! lib (append lib (list (cons (incr) (reverse (list-tail ls eoe-length))))))
-             (loop '() (read-char port)))
-	  (else (loop (cons char ls) (read-char port)))))))
+            (set! lib (append acc (list (cons (incr) (reverse entry))))))
+            ((and (>= (length entry) eoe-length) (equal? end-of-entry (list-tail (reverse entry) (- (length entry) eoe-length))))  
+             (loop (read-char port) '() (append acc (list (cons (incr) (reverse (list-tail entry eoe-length)))))))
+	  (else (loop (read-char port) (cons char entry) acc ))))))
 
 ;displays table of content
 (define (toc)
