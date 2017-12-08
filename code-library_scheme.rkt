@@ -18,7 +18,7 @@
             (set! lib (append acc (list (cons (incr) (reverse entry))))))
             ((and (>= (length entry) eoe-length) (equal? end-of-entry (list-tail (reverse entry) (- (length entry) eoe-length))))  
              (loop (read-char port) '() (append acc (list (cons (incr) (reverse (list-tail entry eoe-length)))))))
-	  (else (loop (read-char port) (cons char entry) acc ))))))
+	  (else (loop (read-char port) (cons char entry) acc))))))
 
 ;displays table of content
 (define (toc)
