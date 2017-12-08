@@ -15,10 +15,10 @@ association
 - car is the key, cdr is the value associated to the key
 
 EXAMPLE:
-> (define a '((a . 1) (b . 2) (c . 3)))
-> a
+> (define x '((a . 1) (b . 2) (c . 3)))
+> x
 ((a . 1) (b . 2) (c . 3))
-> (assv 'a a)
+> (assv 'a x)
 (a . 1)
 
 
@@ -172,6 +172,8 @@ lists
 - (set-cdr! ls y) replaces the tail of ls by y
 - (list-ref ls x) returns the list elment at index x
 - (list-tail ls x) returns the tail of a list starting from the index x
+- (append ls1 ls2) appends two lists
+- (reverse ls) reverses a list
 - (list? ls) checks if ls is a list
 - (null? ls) checks if ls is '()
 - (equal? ls1 ls2) checks if ls1 & ls2 are equal
