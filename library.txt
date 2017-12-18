@@ -10,6 +10,7 @@ EXAMPLES:
 12
 
 
+
 association
 - each element of this list is a cons cell
 - car is the key, cdr is the value associated to the key
@@ -20,6 +21,7 @@ EXAMPLE:
 ((a . 1) (b . 2) (c . 3))
 > (assv 'a x)
 (a . 1)
+
 
 
 begin
@@ -38,6 +40,7 @@ EXAMPLE:
 The first element is 1.
 
 
+
 chars
 - represented by prefixing the character with '#\'
 - white space chars: #\newline, #\return, #\space
@@ -47,6 +50,7 @@ EXAMPLE:
 > (define x #\j)
 > (char? x)
 #t
+
 
 
 cond
@@ -64,12 +68,14 @@ EXAMPLE:
 STRING!
 
 
+
 converting
 - (char->integer x)
 - (integer->char x)
 - (string->list x)
 - (number->string x)
 - (string->number x)
+
 
 
 eqv?
@@ -89,6 +95,7 @@ EXAMPLES:
 #t
 
 
+
 higher order functions
 - take other functions as parameters and therefore promote modularity of programs
 
@@ -101,6 +108,7 @@ EXAMPLE:
    (else (loop (cdr ls) (+ index 1))))))
 > (member eqv? "hello" '(1 2 3 "hello" 4))
 3
+
 
 
 input/output
@@ -120,6 +128,7 @@ input/output
 - (close-input-port port) & (close-output-port port) close port
 
 
+
 if
 - consists of one 'if' & 'else'
 - nested 'if'-expressions are possible instead of 'else'-branch
@@ -135,6 +144,7 @@ EXAMPLE:
 NUMBER!
 
 
+
 lambda
 - defines an anonymous function without a name
 - also used to define functions (instead of the shortcut)
@@ -145,6 +155,7 @@ EXAMPLE:
 > (define add2 (lambda (x) (+ x 2)))
 > (add2 5)
 7
+
 
 
 let/let*
@@ -158,6 +169,7 @@ EXAMPLES:
 
 > (let* ((x 1)(y x))(+ x y))
 2
+
 
 
 lists
@@ -197,6 +209,7 @@ EXAMPLES:
 #t
 
 
+
 map
 - applies a function to each element of a list & returns the list
 
@@ -205,6 +218,7 @@ EXAMPLES:
 ((1 . 10) (2 . 20) (3 . 30))
 > (map (lambda (x) (* x x)) '(1 2 3))
 (1 4 9)
+
 
 
 named let
@@ -221,6 +235,7 @@ EXAMPLE:
         (loop (cdr x))))))
 > (read-ls)
 a2s
+
 
 
 set!/set-car!/set-cdr!
@@ -243,6 +258,7 @@ EXAMPLES:
 (4 . 5)
 
 
+
 strings
 - (string-ref str x) returns the character at the index x from the string str
 - (string-append x y) returns a new string by appending x & y
@@ -254,6 +270,7 @@ EXAMPLES:
 #\e
 > (string-append "adam " "and " "eve")
 "adam and eve"
+
 
 
 vectors
