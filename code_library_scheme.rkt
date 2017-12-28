@@ -22,7 +22,7 @@
 
 ;displays table of content
 (define (toc)
-  (display "----CODE LIBRARY SCHEME----\n")
+  (display "----TABLE OF CONTENT----\n")
   (let loop-lib((lib lib))
     (if (not (null? lib))
         (let loop-entry((entry (car lib))(entry-title '()))
